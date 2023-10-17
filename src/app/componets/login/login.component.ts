@@ -7,9 +7,9 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent  implements OnInit{
+export class LoginComponent implements OnInit {
   faLock = faLock;
   loginForm = new FormGroup({
     email: new FormControl(''),
@@ -24,17 +24,15 @@ export class LoginComponent  implements OnInit{
   }
   onSubmit(): void {
     if (this.loginForm.valid) {
-      this.auth.login(this.loginForm.value).subscribe(
-        (result) => {
+      this.auth.login(this.loginForm.value).subscribe({
+        next:(result) =>{
           console.log(result);
           this.router.navigate(['/admin']);
         },
-        (err: Error) => {
-          alert(err.message);
+        error:(paramError)=>{
+          alert(paramError);
         }
-      );
+      });
     }
   }
- 
-
 }

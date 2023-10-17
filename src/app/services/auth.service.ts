@@ -30,6 +30,6 @@ export class AuthService {
       this.setToken('abcdefghijklmnopqrstuvwxyz');
       return of({ name: 'Tarique Akhtar', email: 'admin@gmail.com' });
     }
-    return throwError(new Error('Failed to login'));
+    return throwError(() => new Error('Error de autenticacion'));
   }
 }
